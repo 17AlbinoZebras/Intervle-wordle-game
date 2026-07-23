@@ -7,6 +7,7 @@
 - The alphabet loops. E.g. "Z" is 3 letters away from "C"
 <br/>
 <br/>
-Intervle is a wordle spin-off I made during summer 2023[^1].
+Intervle is a wordle spin-off I made during summer 2023<sup><a href="#remake-note" id="remake-ref">[1]</a></sup>.
 
-[^1]: I plan to remake this using Node.js, TypeScript, and React
+<hr />
+<p id="remake-note"><a href="#remake-ref">↩</a> <b>1.</b> I plan to remake this using Node.js, TypeScript, and React</p>
