@@ -1,0 +1,808 @@
+/* TO DO:
+- Make labels on keyboard toggle also work to toggle it
+- Fix button formatting
+- Fix color code formatting
+- Make an easy mode indicator for using possible letters
+*/
+
+
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.body {
+  /* font-family: "Agdasima", sans-serif; */
+  font-family: "Ubuntu", sans-serif;
+}
+
+.top-bar {
+  /* font-family: 'Oswald', sans-serif; */
+  /* font-family: "Agdasima", sans-serif; */
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #d3d6da;
+  padding: 0px;
+  height: 100%;
+  position: relative;
+  flex-direction: row;
+}
+
+.nav-left {
+  margin-right: auto;
+  width: 100px;
+  /* flex: 1; */
+  display: flex;
+}
+
+.change-game-mode {
+  /* display: flex; */
+  justify-content: flex-start;
+  align-self: left;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: center;
+  display: none;
+  margin-left: 0.5em;
+  /* width: 100%; */
+}
+
+.nav-middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  /* flex: 5; */
+}
+
+.stumple-logo {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.75em;
+  display: flex;
+  /* padding: 0; */
+  margin: auto;
+  /* width: 20%; */
+  /* flex: 1; */
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  margin: auto;
+  margin-right: 0.5em;
+  width: 100px;
+}
+
+.bi-question-circle {
+  margin-right: 0.5rem;
+}
+
+@media (min-width: 415px) {
+  .top-bar {
+    /* font-family: 'Oswald', sans-serif; */
+    /* font-family: "Agdasima", sans-serif; */
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    justify-content: center;
+    border-bottom: 1px solid #d3d6da;
+    padding: 0px;
+    height: 65px;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+
+  .stumple-logo {
+    font-size: 2em;
+    display: flex;
+    height: 100%;
+    padding: 0.25em 0;
+  }
+
+  .nav-left {
+    margin-right: auto;
+    width: 200px;
+    /* flex: 1; */
+  }
+
+  .nav-right {
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+    margin-right: 0.5em;
+    width: 200px;
+  }
+}
+
+
+.modal {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.rules-modal-title {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.examples {
+  width: 200px;
+}
+
+.example-title {
+  margin-bottom: 0.5rem;
+  padding-left: 10px;
+}
+
+.example-grid {
+  grid-template-rows: repeat(2, 1fr) !important;
+  width: 250px !important;
+  padding-left: 0px !important;
+  padding-top: 0px !important;
+}
+
+.example-row {
+  /* padding-left: 10px; */
+}
+
+.example-box {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  font-size: 1.8rem !important;
+}
+
+.guess-explanation {
+  
+}
+
+.close-rules {
+  background-color: #82888c; /* #9da1a4 */
+  border-color: #82888c;
+}
+
+.close-rules:hover {
+  background-color: #767b7f;
+  border-color: #767b7f;
+}
+
+
+.score-modal-body {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.share-button {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #86C281;
+  color: #FFFFFF;
+  border-radius: 104px;
+  border: solid 2px #86C281;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 16px;
+  vertical-align: middle;
+  cursor: pointer;
+
+  width: 121px;
+  height: 36px;
+  
+  justify-content: center;
+  align-items: center;
+  /* text-transform: uppercase; */
+  text-align: center;
+}
+
+.share-button:hover {
+  background-color: #fff;
+  border: solid 2px #86C281;
+}
+
+.game-board {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto;
+  height: calc(100% - 65px);
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Ubuntu", sans-serif;
+}
+
+.grid-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  /* width: 500px;
+  height: 500px; */
+  overflow: hidden;
+}
+
+.guess-grid {
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr); /*repeat(8, 1fr)*/
+  grid-gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  width: 300px;
+  /* height: 500px; */
+}
+
+.guess-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+}
+
+.guess-box {
+  /* display: flex; */
+  /* border: 3px solid #D3D6DA;
+  border-radius: .25rem;
+  box-sizing: border-box;
+  width: 3.5rem;
+  height: 3.5rem; */
+
+  /* width: 100%; */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 2px solid;
+  border-color: #d3d6da;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  width: 3.5rem;
+  height: 3.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.box-1 {
+  animation-delay: 0ms;
+}
+
+.box-2 {
+  animation-delay: 100ms;
+}
+
+.box-3 {
+  animation-delay: 200ms;
+}
+
+.box-4 {
+  animation-delay: 300ms;
+}
+
+.box-5 {
+  animation-delay: 400ms;
+}
+
+.contains-guess {
+  border: 2px solid;
+  border-color: #a7adaf;
+}
+
+/* colors: */
+.correct-letter {
+  background-color: #86C281;
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.one-away {
+  background-color: #ff7878;
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.two-away {
+  background-color: #ff9e78;
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.four-away {
+  background-color: #ffc478;
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.six-away {
+  background-color: #BCCABC; /*#a7adaf;*/
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.eight-away {
+  background-color: #78D0FF; /*#78DDFF;*/
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.ten-away {
+  background-color: #78B1FF; /*#78ABFF;*/
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+.twelve-away {
+  background-color: #7888FF; /*#7878FF*/;
+  color: #FFFFFF; /*#22222A;*/
+  border: 0;
+}
+
+
+.bottom-section
+{
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  margin: 0 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tool-buttons {
+  display: flex;
+  position: relative;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-key-button {
+  border-width: 2px;
+  border-color: #FF9E78;
+  margin-right: 0.5rem;
+  color: #FF9E78;
+  font-weight: bold;
+}
+
+.color-key-button:hover {
+  border-color: #FF9E78;
+  background-color: #fff;
+  color: #FF9E78;
+}
+
+.color-key-button.selected {
+  color: white;
+  border-color: #FF9E78;
+  background-color: #FF9E78;
+}
+
+.possible-letters-button {
+  border-width: 2px;
+  border-color: #78B1FF;
+  color: #78B1FF;
+  font-weight: bold;
+}
+
+.possible-letters-button:hover {
+  border-color: #78B1FF;
+  background-color: #78B1FF;
+}
+
+.key-container {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  /* width: 415px; */
+}
+
+.key-title {
+  margin-top: 8px;
+  /*margin-left: 0.1rem;*/
+  text-align: center;
+}
+
+.color-key {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-gap: 0;
+
+  padding: 0;
+  box-sizing: border-box;
+
+  /* width: 415px; */
+}
+
+.temp-key {
+  grid-template-columns: repeat(7, 1fr);
+  margin: auto;
+  /* border: 2px solid #a7adaf; */
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.correct-key {
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  background-color: #86c281;
+}
+
+.color-key-box {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  line-height: 1;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 0px solid;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  width: 2.75rem;
+  height: 2.75rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 6px;
+}
+
+.key-info {
+  position: relative;
+  /* height: 0.75rem; */
+  text-align: center;
+  padding: 0.5rem 0;
+
+  color: #b7babd;
+}
+
+.key-correct {
+  position: absolute;
+  top: 0.1em;
+  
+  font-size: 0.7em;
+  font-weight: 550;
+}
+
+.key-closest {
+  position: absolute;
+  left: 5em;
+  top: 0.1em;
+  
+  font-size: 0.7em;
+  font-weight: 550;
+}
+
+.key-farthest {
+  position: absolute;
+  right: 1em;
+  top: 0.1em;
+  
+  font-size: 0.7em;
+  font-weight: 550;
+}
+
+@media (min-width: 455px)
+{
+  .color-key-box {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 0.5rem;
+    border-color: #fff;
+    box-sizing: border-box;
+    width: 3.25rem;
+    height: 3.25rem;
+    padding-top: 8px;
+  }
+
+  .key-label {
+    font-size: 1.25rem;
+    line-height: 1;
+    /* font-weight: bold; */
+    vertical-align: middle;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .correct-key .key-label {
+    font-size: 1.35rem;
+  }
+  .ten-away .key-label {
+    font-size: 1.1rem;
+  }
+  .twelve-away .key-label {
+    font-size: 1.1rem;
+  }
+
+  .key-info {
+    color: #959a9d;
+  }
+
+  .key-correct {
+    position: absolute;
+    top: 0.1em;
+    
+    font-size: 1em;
+    font-weight: 500;
+  }
+  
+  .key-closest {
+    position: absolute;
+    left: 4.65rem;
+    top: 0.1em;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  
+  .key-farthest {
+    position: absolute;
+    right: 1.35em;
+    top: 0.1em;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+}
+
+
+.show-letters-holder {
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-gap: 5px;
+
+  /* padding-bottom: 8px; */
+  box-sizing: border-box;
+
+  width: 100%;
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  
+  justify-content: center;
+  align-items: center;
+  /* padding: 8px; */
+  padding-top: 6px;
+  box-sizing: border-box;
+
+  width: 300px;
+  margin: auto;
+}
+
+.possible-letter-box {
+  /* width: 100%; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 2px solid;
+  border-color: #d3d6da;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  width: 3.5rem;
+  height: 3.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  /* padding-top: 8px; */
+}
+
+.possible-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.option-1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.option-2 {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.option-3 {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.option-4 {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+
+.possible-letter-box-OLD {
+  /* width: 100%; */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 2px solid;
+  border-color: #d3d6da;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  width: 3.25rem;
+  height: 3.25rem;
+  text-transform: uppercase;
+  text-align: center;
+  /* padding-top: 8px; */
+  padding-bottom: 8px;
+}
+
+.keyboard-holder {
+  /* height: 200px; */
+  /* width: 500px; */
+  margin: 10px auto;
+}
+
+.keyboard-row {
+  display: flex;
+  width: 100%;
+  margin: 0 auto 8px;
+}
+
+.keyboard-key {
+  font-size: 1.25em;
+  font-weight: bold;
+  border: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+  height: 46px;
+  border-radius: 4px;
+  background-color: #D3D6DA;
+  color: #000000;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  overflow: visible;
+}
+
+/* @media (min-width: 455px) {
+  .keyboard-key {
+    height: 48px;
+  }
+} */
+
+.keyboard-key:hover {
+  background-color: #b7babd;
+}
+
+.keyboard-spacer {
+  flex: 0.5;
+}
+
+.keyboard-toggle {
+  --width: 44px;
+  --height: 46px; /* calc(var(--width) / 3); */
+  /* position: relative; */
+  display: inline-block;
+  flex: 1;
+  width: var(--width);
+  height: var(--height);
+  margin: 0 6px 0 0;
+   /* transform: translateY(50%); */
+  box-sizing: border-box;
+  /* border: 2px solid;
+  border-color: #d3d6da; */
+  border-radius: 4px;
+  /* position: relative; */
+  cursor: pointer;
+}
+
+/* @media (min-width: 455px) {
+  .keyboard-toggle {
+    --height: 48px;
+  }
+} */
+
+.keyboard-toggle input {
+    display: none;
+}
+
+.keyboard-toggle .keyboard-slider {
+    position: absolute;
+    /* top: 6.75rem; */
+    /* left: 0.125rem; */
+    width: calc(var(--width) + 2px);
+    height: calc(var(--height));/* - 4px);*/
+    border-radius: 4px;
+    background-color: #ccc;
+    transition: all 0.4s ease-in-out;
+}
+
+.keyboard-toggle .keyboard-slider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--width) + 2px);
+    height: calc((var(--height) / 2) + 1px);
+    border-radius: 4px;
+    background-color: #ffc478; /*#FF788A; /*#ffed7a*/ /*#777BFF; #9380ff;*/
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease-in-out;
+}
+
+.keyboard-toggle input:checked + .keyboard-slider {
+    /* background-color: #C7A5F3; /*#b378ff;*/ 
+}
+
+.keyboard-toggle input:checked + .keyboard-slider::before {
+    transform: translateY(calc(var(--height) - 1px - var(--height)/2)); /*- 4px));*/
+}
+
+.keyboard-labels::before {
+  content: attr(data-off);
+  position: relative;
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: #000;
+  bottom: 0.3rem;
+  left: 0.125rem;
+}
+
+.keyboard-labels::after {
+  content: attr(data-on);
+  position: relative;
+  font-size: .55rem;
+  font-weight: 700;
+  color: #000;
+  bottom: -0.95rem;
+  left: -1.95rem;
+}
+
+@media (min-width: 455px) {
+  .keyboard-labels::before {
+    content: attr(data-off);
+    position: relative;
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #000;
+    bottom: 0.2rem;
+    left: 0.25rem;
+  }
+  
+  .keyboard-labels::after {
+    content: attr(data-on);
+    position: relative;
+    font-size: .55rem;
+    font-weight: 700;
+    color: #000;
+    bottom: -1.2rem;
+    left: -1.825rem;
+  }
+}
+
+.enter-key {
+  flex: 1.5;
+  font-size: 0.8rem;
+}
+
+.backspace-key {
+  flex: 1.5;
+  font-weight: 700;
+  font-size: 1.5rem
+}
+
+.pressed-key {
+  background-color: #b7babd;
+}
