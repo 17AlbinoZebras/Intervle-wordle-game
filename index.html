@@ -135,28 +135,34 @@
               </li>
               <li>The alphabet loops. E.g. "Z" is 3 letters away from "C"</li>
             </ul>
-            <!-- <div class="examples">
-              <p class="example-title"><strong>Example</strong></p>
+            <div class="examples">
+              <h5 class="example-title"><strong>Example</strong></h5>
               <div class="guess-grid container example-grid">
+                <span>Guess:</span>
                 <div class="guess-row row-1 example-row">
-                  <div class="guess-box box-1 example-box two-away">Z</div>
-                  <div class="guess-box box-2 example-box correct-letter">E</div>
-                  <div class="guess-box box-3 example-box four-away">B</div>
-                  <div class="guess-box box-4 example-box eight-away">R</div>
-                  <div class="guess-box box-5 example-box twelve-away">A</div>
+                  <div class="guess-box box-1 example-box four-away">Z</div>
+                  <div class="guess-box box-2 example-box eight-away">E</div>
+                  <div class="guess-box box-3 example-box correct-letter">B</div>
+                  <div class="guess-box box-4 example-box">R</div>
+                  <div class="guess-box box-5 example-box">A</div>
                 </div>
-                <div class="guess-explanation">
-                  <p>Z is 2 letters away from the first letter</p>
-                </div>
+                <span>Target:</span>
                 <div class="guess-row row-2 example-row">
-                  <div class="guess-box box-1 example-box correct-letter">B</div>
-                  <div class="guess-box box-2 example-box correct-letter">E</div>
-                  <div class="guess-box box-3 example-box correct-letter">G</div>
-                  <div class="guess-box box-4 example-box correct-letter">I</div>
-                  <div class="guess-box box-5 example-box correct-letter">N</div>
+                  <div class="guess-box box-1 example-box correct-letter">C</div>
+                  <div class="guess-box box-2 example-box correct-letter">Y</div>
+                  <div class="guess-box box-3 example-box correct-letter">B</div>
+                  <div class="guess-box box-4 example-box correct-letter">E</div>
+                  <div class="guess-box box-5 example-box correct-letter">R</div>
                 </div>
               </div>
-            </div> -->
+              <div class="guess-explanation">
+                <ul>
+                  <li><b>Z</b> is 3 or 4 letters away from the first letter of the target word</li>
+                  <li><b>E</b> is 5 or 6 letters away from the second letter</li>
+                  <li><b>B</b> is the correct third letter of the target word</li>
+                  <li><b>R</b> and <b>A</b> are each more than 8 letters away from the letters in their respective positions</li>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button
@@ -384,32 +390,32 @@
         </div>
 
         <div class="key-container collapse" id="color-key">
-          <h4 class="key-title"><strong>Key</strong></h4>
+          <h4 class="key-title"><strong># Boxes Away</strong></h4>
           <div class="color-key g-1">
             <div class="color-key-box correct-letter correct-key">
               <h6 class="key-label">&#x2713&nbsp</h6>
             </div>
             <div class="temp-key">
-              <div class="color-key-box one-away">
-                <h6 class="key-label">1</h6>
-              </div>
               <div class="color-key-box two-away">
-                <h6 class="key-label">2-3</h6>
+                <h6 class="key-label">1-2</h6>
               </div>
               <div class="color-key-box four-away">
-                <h6 class="key-label">4-5</h6>
-              </div>
-              <div class="color-key-box six-away">
-                <h6 class="key-label">6-7</h6>
+                <h6 class="key-label">3-4</h6>
               </div>
               <div class="color-key-box eight-away">
+                <h6 class="key-label">5-6</h6>
+              </div>
+              <div class="color-key-box twelve-away">
+                <h6 class="key-label">7-8</h6>
+              </div>
+              <!-- <div class="color-key-box eight-away">
                 <h6 class="key-label">8-9</h6>
               </div>
               <div class="color-key-box ten-away">
                 <h6 class="key-label">10-11</h6>
               </div>
               <div class="color-key-box twelve-away">
-                <h6 class="key-label">12-13</h6>
+                <h6 class="key-label">12-13</h6> -->
               </div>
             </div>
           </div>
