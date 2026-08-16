@@ -144,7 +144,7 @@ rules-modal-body li {
 
 .example-title {
   margin-bottom: 0.5rem;
-  padding-left: 10px;
+  /* padding-left: 10px; */
 }
 
 .example-grid {
